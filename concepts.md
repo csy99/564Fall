@@ -113,8 +113,8 @@ example:
 In a B+ tree with 7 nodes (blocks), the root node is A, and the leaf node C has modification operations. Copy C and its ancestor nodes: C', B', A', then modify the data on these new copies of the nodes, and finally write the modified data to the new location of the disk file. In this process, if a business is reading the B+ tree, the complete old data of C, B and A can still be read. When the data of C', B' and A' nodes is brushed to the disk, the root node of the B+ tree is changed to A', then the business can read the new data of the B+ tree. At this time, the old data A, B and C still exist. You can choose to keep them as backup or recycle the disk space.
 
 ### high level VS low level
-tx level: DB contents, locks, entrire tx (hrs), S/X/U
-thread level: in-mem data structure, latches, critical section (secs), R/W
+- tx level: DB contents, locks, entrire tx (hrs), S/X/U
+- thread level: in-mem data structure, latches, critical section (secs), R/W
 ### OCC & PCC
 #### Optimistic Concurrency Control
 Assume most transactions won't have conflicts
@@ -152,8 +152,8 @@ If an action violates this ordering, the transaction is aborted and restarted.
 - good for searching
 
 *comparison*
-KVL+IM lock range larger, management easier (acquisition fewer). 
-KRL lock range smaller, concurrency higher. 
+- KVL+IM lock range larger, management easier (acquisition fewer). 
+- KRL lock range smaller, concurrency higher. 
 
 ## Columnar Storage
 ### application scenario

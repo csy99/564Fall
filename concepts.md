@@ -1,4 +1,4 @@
-## DBMS Uses
+a## DBMS Uses
 ### ER Diagram
 entity, relationship, degree + cardinality
 
@@ -92,7 +92,7 @@ key value store:
 - Atomicity: ,ultiple actions indivisible, all or nothing
 - Consistency: for every trax, it sees the same database. integrity constraints, keep in valid state. 
 - Isolation: concurrency control, illusion of single user access
-- Durability: Can survivce craches.
+- Durability: Can survive craches.
 ### WAL
 record any changes in the persistent database. log first and then modify the database. 
 ### 3 Failure

@@ -105,6 +105,13 @@ scan log + log the rollback + rollback
 - incomplete tx + mem failure + good rec log + good db (slightly out of date)
 
 ## Concurrency Control (isolation)
+### multi-version storage
+#### copy-on-write B-Tree
+version number of idx entries as key suffix (e.g. LSN)
+
+example:
+In A B+ tree with 7 nodes (blocks), the root node is A, and the leaf node C has modification operations.Copy C and its ancestor nodes: C', B', A', then modify the data on these new copies of the nodes, and finally write the modified data to the new location of the disk file.In this process, if A business is reading the B+ tree, the complete old data of C, B and A can still be read.When the data of C', B' and A' nodes is brushed to the disk, the root node of the B+ tree is changed to A', then the business can read the new data of the B+ tree. At this time, the old data A, B and C still exist. You can choose to keep them as backup or recycle the disk space.
+
 ### high level VS low level
 tx level: DB contents, locks, entrire tx (hrs), S/X/U
 thread level: in-mem data structure, latches, critical section (secs), R/W
@@ -120,6 +127,10 @@ Each transaction can be assigned a timestamp at startup, and we can ensure , at 
 If an action violates this ordering, the transaction is aborted and restarted.
 
 #### Snapshot isolation
+- get rid of read lock
+- read from the version at the beginning of tx
+- does not care changes happen after the point
+- good for read only tx, but have problem with read-write tx
 1. The basic idea is take a snapshot(a copy of the entire database at a certain moment) once a while. 
 2. Delete logs that don't have new information on tip of the snapshot.
 3. By doing so, we could have a much more compact log which save time for recovery. 

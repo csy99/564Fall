@@ -9,7 +9,6 @@ meta data + logical & physical data independence + tx
 #### Storeage Engine
 def
 : a software module used to create, read, and update data between the disk and memory while still maintaining data integrity (rollback journals and write-ahead logs).
-
 component
 : indexing, backup and restore, concurrency control, logging, and recovery.
 #### Relational Engine
@@ -82,7 +81,8 @@ hash aggregate stores one row for each group, so the total memory requirement is
 ### key value store / RDBMS
 RDBMS: 
 - pros: more comprehensive; better for data organization and management 
-- cons: 
+- cons: complex; require more memory
+
 key value store: 
 - pros: more concurrency control; light weight; better for scalability performance; faster for recovery; (data model is not hierachical); 
 - cons: does not support sql; not great for 

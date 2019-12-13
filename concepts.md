@@ -9,6 +9,7 @@ meta data + logical & physical data independence + tx
 #### Storeage Engine
 def
 : a software module used to create, read, and update data between the disk and memory while still maintaining data integrity (rollback journals and write-ahead logs).
+
 component
 : indexing, backup and restore, concurrency control, logging, and recovery.
 #### Relational Engine
@@ -90,7 +91,7 @@ key value store:
 ## Transaction Management
 ### ACID
 - Atomicity: multiple actions indivisible, all or nothing
-- Consistency: for every trax, it sees the same database. integrity constraints, keep in valid state. 
+- Consistency: for every tx, it sees the same database. integrity constraints, keep in valid state. 
 - Isolation: concurrency control, illusion of single user access
 - Durability: Can survive craches.
 ### WAL
@@ -168,8 +169,7 @@ response time, total resource consumption
 #### 2 phase commit
 1st phase:
 
-all participants promise to implement the global commit decision, i.e., to commit or to abort as decided by the commit coordinator. 
-When all participants have promised this, then the coordinator can decide to commit. This decision must be logged just like the commit decision of a single-site transaction. Once that commit record is persistent on stable storage, the user can be certain that the transaction's updates will be durable.
+All participants leave the final commit decision to the coordinator and promise (guarantee) that they will implement the coordinator’s decision, i.e., they will commit or abort (roll back) as directed.
 
 2nd phase:
 

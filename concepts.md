@@ -89,7 +89,7 @@ key value store:
 
 ## Transaction Management
 ### ACID
-- Atomicity: ,ultiple actions indivisible, all or nothing
+- Atomicity: multiple actions indivisible, all or nothing
 - Consistency: for every trax, it sees the same database. integrity constraints, keep in valid state. 
 - Isolation: concurrency control, illusion of single user access
 - Durability: Can survive craches.
@@ -110,7 +110,7 @@ scan log + log the rollback + rollback
 version number of idx entries as key suffix (e.g. LSN)
 
 example:
-In A B+ tree with 7 nodes (blocks), the root node is A, and the leaf node C has modification operations.Copy C and its ancestor nodes: C', B', A', then modify the data on these new copies of the nodes, and finally write the modified data to the new location of the disk file.In this process, if A business is reading the B+ tree, the complete old data of C, B and A can still be read.When the data of C', B' and A' nodes is brushed to the disk, the root node of the B+ tree is changed to A', then the business can read the new data of the B+ tree. At this time, the old data A, B and C still exist. You can choose to keep them as backup or recycle the disk space.
+In a B+ tree with 7 nodes (blocks), the root node is A, and the leaf node C has modification operations. Copy C and its ancestor nodes: C', B', A', then modify the data on these new copies of the nodes, and finally write the modified data to the new location of the disk file. In this process, if a business is reading the B+ tree, the complete old data of C, B and A can still be read. When the data of C', B' and A' nodes is brushed to the disk, the root node of the B+ tree is changed to A', then the business can read the new data of the B+ tree. At this time, the old data A, B and C still exist. You can choose to keep them as backup or recycle the disk space.
 
 ### high level VS low level
 tx level: DB contents, locks, entrire tx (hrs), S/X/U

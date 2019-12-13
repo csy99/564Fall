@@ -84,8 +84,8 @@ RDBMS:
 - cons: complex; require more memory
 
 key value store: 
-- pros: more concurrency control; light weight; better for scalability performance; faster for recovery; (data model is not hierachical); 
-- cons: does not support sql; not great for 
+- pros: more concurrency control; light weight; better for scalability and performance; faster for recovery; (data model is not hierachical); 
+- cons: does not support sql; not great for tx and physical data independence
 
 ## Transaction Management
 ### ACID

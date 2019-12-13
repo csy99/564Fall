@@ -165,6 +165,15 @@ Splitting the data across the machine; Splitting query operations
 ### cost metric
 response time, total resource consumption
 ### information transfer
-- 2 phase commit
-- redundancy: mirroring/log shipping
+#### 2 phase commit
+1st phase:
+
+all participants promise to implement the global commit decision, i.e., to commit or to abort as decided by the commit coordinator. 
+When all participants have promised this, then the coordinator can decide to commit. This decision must be logged just like the commit decision of a single-site transaction. Once that commit record is persistent on stable storage, the user can be certain that the transaction's updates will be durable.
+
+2nd phase:
+
+the coordinator informs all participants of its decision and waits for them to report completion.
+
+#### redundancy: mirroring/log shipping
 
